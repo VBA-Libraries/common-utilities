@@ -1,0 +1,6 @@
+'''call this function by passing a textfile path and contents, This will write the content to the file '''
+Function write_text_file(ByVal str_path As String, str_content) As String
+ Open str_path For Output As #1
+ Print #1, str_content
+ Close #1
+End Function
