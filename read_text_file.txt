@@ -1,0 +1,7 @@
+''' call this fuction with the a txt/csv file path, this will return the content as string'''
+Function read_text_file(ByVal str_path As String) As String
+ Open str_path For Input As #1
+ str_data = Input$(LOF(1), 1)
+ Close #1
+ read_text_file = str_data
+End Function
