@@ -12,4 +12,4 @@ Your help will motivate me to achieve my goal of creating 365 reusable VBA funct
 If you need support implementing any VBA code, check my patreon page.
 
 Happy Codding!
-<a href="https://www.patreon.com/bePatron?u=19089471" data-patreon-widget-type="become-patron-button">Become a Patron!</a><script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>
+<a href="https://www.patreon.com/bePatron?u=19089471" data-patreon-widget-type="become-patron-button">Become a Patron!</a>
