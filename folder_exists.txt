@@ -1,0 +1,3 @@
+Function folder_exists(ByVal str_folder_path As String) As Boolean
+    folder_exists = (Len(Dir(str_folder_path, vbDirectory)) <> 0)
+End Function
