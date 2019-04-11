@@ -1,0 +1,3 @@
+Function file_exists(ByVal str_file_name As String) As Boolean
+  file_exists = (Len(Dir(str_file_name, vbNormal)) <> 0)
+End Function
