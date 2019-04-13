@@ -1,0 +1,19 @@
+Public Function regex_execute(str As String, reg As String, _
+                             Optional match_index As Long, _
+                             Optional sub_match_index As Long) As String
+    Dim obj_regex As Object
+    Dim matches As Object
+    On Error GoTo err_handler
+    Set obj_regex = CreateObject("VBScript.RegExp")
+    obj_regex.Pattern = reg
+    obj_regex.Global = Not (match_index = 0 And sub_match_index = 0) 'For efficiency
+    If obj_regex.test(str) Then
+        Set matches = obj_regex.Execute(str)
+        regex_execute = matches(match_index).SubMatches(sub_match_index)
+    Else
+        regex_execute = "not found"
+    End If
+    Exit Function
+err_handler:
+    regex_execute = Err.Description
+End Function
