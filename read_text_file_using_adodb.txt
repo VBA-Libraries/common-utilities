@@ -1,0 +1,9 @@
+Public Function read_file(str_path As String, Optional char_set As String = "utf-8")
+  Static obj As Object
+  If obj Is Nothing Then Set obj = VBA.CreateObject("ADODB.Stream")
+  obj.Charset = char_set
+  obj.Open
+  obj.LoadFromFile str_path
+  read_file = obj.ReadText()
+  obj.Close
+End Function
