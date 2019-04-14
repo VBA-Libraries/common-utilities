@@ -1,0 +1,9 @@
+Public Function write_file(str_path As String, str_content As String, Optional char_set As String = "utf-8")
+  Static obj As Object
+  If obj Is Nothing Then Set obj = VBA.CreateObject("ADODB.Stream")
+  obj.Charset = char_set
+  obj.Open
+  obj.WriteText str_content
+  obj.SaveToFile str_path
+  obj.Close
+End Function
