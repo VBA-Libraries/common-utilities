@@ -1,0 +1,47 @@
+
+'''usage
+Sub btn_refresh_Click()
+ 
+  combine_workbooks ThisWorkbook.path, "*.csv", "data"
+ 
+End Sub
+''' combine files
+Sub combine_workbooks(ByVal directory_path As String, ByVal file_type As String, ByVal dest_sheet As String)
+    Application.ScreenUpdating = False
+    Dim paths() As String
+    Dim lng_last_row As Long
+    paths = search_file_names(directory_path, file_type)
+    Dim wb As Workbook
+    With Sheets(dest_sheet)
+        .UsedRange.Offset(1#).ClearContents
+        For Each path In paths
+            lng_last_row = .Cells(Rows.Count, 1).End(xlUp).Row + 1
+            Application.StatusBar = "processing " + path
+            Set wb = Workbooks.Open(path)
+            wb.Sheets(1).UsedRange.Copy
+            .Cells(lng_last_row, 1).PasteSpecial xlPasteValues
+            wb.Close (False)
+        Next
+    End With
+    Set wb = Nothing
+    Application.ScreenUpdating = True
+    Application.StatusBar = False
+End Sub
+
+'searches files
+Function search_file_names(base_path As String, file_type As String) As String()
+    Dim paths() As String
+    
+    If Right(base_path, 1) <> "\" Then base_path = base_path + "\"
+    Dim i As Integer
+    current_path = Dir(base_path + file_type)
+    Do Until current_path = vbNullString
+        ReDim Preserve paths(i)
+        paths(UBound(paths)) = base_path + current_path
+        current_path = Dir()
+        i = i + 1
+    Loop
+    search_file_names = paths
+End Function
+
+
