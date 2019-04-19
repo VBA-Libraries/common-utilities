@@ -1,7 +1,7 @@
 ''' this fuction searches files in a based directory based on a pattern
 ''' get_file_names ('c:\data\', '*.csv')
 ''' get_file_names ('c:\data\', 'A*.txt')
-Function get_file_names(base_path As String, file_type As String) As String()
+Function search_file_names(base_path As String, file_type As String) As String()
     Dim paths() As String
     Dim i As Integer
     current_path = dir(base_path + file_type)
@@ -11,5 +11,5 @@ Function get_file_names(base_path As String, file_type As String) As String()
         current_path = dir()
         i = i + 1
     Loop
-    get_file_names = paths
+    search_file_names = paths
 End Function
