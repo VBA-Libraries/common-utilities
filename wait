@@ -1,0 +1,12 @@
+''' pause the execution for sec. This works on windows and mac
+Sub wait(sec As Long)
+    Dim now_tick As Date
+    Dim end_tick As Date
+    end_tick = Now + TimeSerial(0, 0, sec)
+    Do
+        now_tick = Now
+        DoEvents
+        
+    Loop Until now_tick >= end_tick
+
+End Sub
