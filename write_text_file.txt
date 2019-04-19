@@ -1,5 +1,8 @@
 '''call this function by passing a textfile path and contents, This will write the content to the file '''
 Function write_text_file(ByVal str_path As String, str_content) As String
+ Dim directory As String
+ directory = Left(str_path, VBA.InStrRev(str_path, "\"))
+ If Len(dir(directory, vbDirectory)) = 0 Then MkDir directory
  Open str_path For Output As #1
  Print #1, str_content
  Close #1
