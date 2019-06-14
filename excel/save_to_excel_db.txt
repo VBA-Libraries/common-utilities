@@ -1,0 +1,30 @@
+
+Sub save_records(ws_source As Worksheet, ws_db As Worksheet, key As String, exising_data_rows As Long, _
+    source_range As String, data_rows As Long)
+    Application.ScreenUpdating = False
+    Dim last_row As Long
+    With ws_source
+        
+        If exising_data_rows > 0 Then
+            delete_existing_data ws_db, key
+        End If
+        .Range(source_range & data_rows).Copy
+        With ws_db
+            last_row = .Range("A" & Rows.Count).End(xlUp).Row + 1
+            .Range("A" & last_row).PasteSpecial xlPasteValues
+        End With
+    End With
+    Application.CutCopyMode = False
+    
+    MsgBox "Saved!"
+    Application.ScreenUpdating = True
+End Sub
+Sub delete_existing_data(ws As Worksheet, str_name As String)
+    With ws
+        .AutoFilterMode = False
+        .UsedRange.AutoFilter field:=1, Criteria1:=str_name
+        .UsedRange.Offset(1, 0).SpecialCells(xlCellTypeVisible).EntireRow.Delete
+        .AutoFilterMode = False
+    End With
+End Sub
+
